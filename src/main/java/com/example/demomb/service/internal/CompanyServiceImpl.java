@@ -1,4 +1,4 @@
-package com.example.demomb.service;
+package com.example.demomb.service.internal;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demomb.entity.dao.CompanyEntity;
 import com.example.demomb.mapper.CompanyMapper;
+import com.example.demomb.service.CompanyService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,23 +17,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CompanyServiceImpl  {
+public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, CompanyEntity> implements CompanyService {
 
     @Autowired
     private CompanyMapper companyMapper;
-    @Autowired
-    private CompanyService companyService;
 
     @Transactional
     public void create(JSONObject jsonObject) {
 
         //目录
         String catalogid = jsonObject.getString("Catalogid");
-//        Validate.notBlank(catalogid, "目录标识不能为空");
+        Validate.notBlank(catalogid, "目录标识不能为空");
 
         //身份
         String verifyCode = jsonObject.getString("verifyCode");
-//        Validate.notBlank(verifyCode, "身份认证码不能为空");
+        Validate.notBlank(verifyCode, "身份认证码不能为空");
 
         //文件
         String fileName = jsonObject.getString("fileName");
@@ -89,7 +88,8 @@ public class CompanyServiceImpl  {
             list.add(companyEntity);
             System.out.println(companyEntity);
         }
-        companyService.saveBatch(list);
+
+        saveBatch(list);
     }
 
 }

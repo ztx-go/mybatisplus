@@ -9,30 +9,12 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * 企业信息表企业信息表
+ */
 @TableName(value = "lt_companies")
 @Data
 public class CompanyEntity implements Serializable {
-
-    /**
-     * 企业名称
-     * 统一社会信用代码
-     * 经营场所
-     * 联系人
-     * 联系电话
-     * 营业范围
-     * 经营起始时间，格式为yyyy-MM-dd
-     * 经营终止时间，格式为yyyy-MM-dd
-     * 省级行政区划，如：四川省
-     * 市级行政区划，如成都市
-     * 区县级行政区划，如：武侯区
-     * 经营地点所属机构或所
-     * 经营地点完整地址
-     * 经度
-     * 纬度
-     * 企业类型，参照数据字典3.8
-     * 主体所属批发市场统一社会信用代码
-     * 所属平台，参照数据字典3.10
-     */
 
     @ApiModelProperty(value = "id")
     @TableId(value = "id", type = IdType.AUTO)
@@ -109,5 +91,13 @@ public class CompanyEntity implements Serializable {
     @ApiModelProperty(value = "所属平台")
     @TableField(value = "from_platform")
     private String fromPlatform;
+
+    @ApiModelProperty(value = "创建时间")
+    @TableField(value = "created_at")
+    private String createdAt;
+
+    @ApiModelProperty(value = "最近一次修改时间")
+    @TableField(value = "updated_at")
+    private String updatedAt;
 
 }

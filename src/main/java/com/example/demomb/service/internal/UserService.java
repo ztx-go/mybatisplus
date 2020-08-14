@@ -1,4 +1,4 @@
-package com.example.demomb.service;
+package com.example.demomb.service.internal;
 
 import com.example.demomb.entity.dao.UserEntity;
 import com.example.demomb.mapper.UserMapper;
