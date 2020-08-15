@@ -44,9 +44,13 @@ public class HandleEntity implements Serializable {
     @TableField(value = "unit")
     private String unit;
 
-    @ApiModelProperty(value = "退货数量")
+    @ApiModelProperty(value = "处理数量")
     @TableField(value = "return_num")
     private String returnNum;
+
+    @ApiModelProperty(value = "处理类型")
+    @TableField(value = "handle_type")
+    private String handleType;
 
     @ApiModelProperty(value = "经度")
     @TableField(value = "longitude")

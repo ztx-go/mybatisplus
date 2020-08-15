@@ -1,4 +1,10 @@
 package com.example.demomb.service;
 
-public interface ReturnService {
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.demomb.entity.dao.ReturnEntity;
+
+public interface ReturnService extends IService<ReturnEntity> {
+
+    void create(JSONObject jsonObject);
 }

@@ -17,10 +17,10 @@ public class UserService {
     public void create() {
 
         UserEntity userEntity = new UserEntity();
-        userEntity.setName("test");
-        userEntity.setAge("11");
-        userMapper.insert(userEntity);
-        Validate.notBlank(userEntity.getName(), "名字不能为空");
+        // userEntity.setName("test");
+        // userEntity.setAge("11");
+        // userMapper.insert(userEntity);
+        // Validate.notBlank(userEntity.getName(), "名字不能为空");
 //        throw new IllegalArgumentException("ddd");
 
     }

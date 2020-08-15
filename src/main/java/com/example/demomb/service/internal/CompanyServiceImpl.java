@@ -23,25 +23,10 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, CompanyEntity
     private CompanyMapper companyMapper;
 
     @Transactional
+    @Override
     public void create(JSONObject jsonObject) {
 
-        //目录
-        String catalogid = jsonObject.getString("Catalogid");
-        Validate.notBlank(catalogid, "目录标识不能为空");
-
-        //身份
-        String verifyCode = jsonObject.getString("verifyCode");
-        Validate.notBlank(verifyCode, "身份认证码不能为空");
-
-        //文件
-        String fileName = jsonObject.getString("fileName");
-        if (StringUtils.isNotBlank(fileName)) {
-//            String fileContent = jsonObject.getString("fileContent");
-            byte[] filContents = jsonObject.getBytes("filContent");
-
-        }
-
-        //json数组
+        //json数组 info不需要判断是否为空，可能同步的内容就是空
         JSONArray jsonArray = jsonObject.getJSONArray("info");
         String info = jsonObject.getString("info");
         System.out.println(info);
@@ -50,39 +35,22 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, CompanyEntity
         List<CompanyEntity> list = new ArrayList<>();
         for (int i = 0; i < jsonArray.size(); i++) {
             JSONObject object = jsonArray.getJSONObject(i);
-            String fstEntName = object.getString("fstEntName");
-            Validate.notBlank(fstEntName, "企业名称");
-
-            String socialCreditUnicode = object.getString("socialCreditUnicode");
-            Validate.notBlank(socialCreditUnicode, "统一社会信用代码");
-            String dom = object.getString("dom");
-            Validate.notBlank(dom, "经营场所");
-            String contactsUser = object.getString("contactsUser");
-            Validate.notBlank(contactsUser, "联系人");
-            String contactsTel = object.getString("contactsTel");
-            Validate.notBlank(contactsTel, "联系电话");
-            String opScope = object.getString("opScope");
-            Validate.notBlank(opScope, "营业范围");
-            String opStartDate = object.getString("opStartDate");
-            Validate.notBlank(opStartDate, "经营起始时间");
-            String opEndDate = object.getString("opEndDate");
-            Validate.notBlank(opEndDate, "经营终止时间");
-            String province = object.getString("province");
-            Validate.notBlank(province, "省级行政区划");
-            String city = object.getString("city");
-            Validate.notBlank(city, "市级行政区划");
-            String district = object.getString("district");
-            Validate.notBlank(district, "区县级行政区划");
-            String institute = object.getString("institute");
-            Validate.notBlank(institute, "经营地点所属机构或所");
-            String fullAddress = object.getString("fullAddress");
-            Validate.notBlank(fullAddress, "经营地点完整地址");
-            String type = object.getString("type");
-            Validate.notBlank(type, "企业类型");
-            String belongMarket = object.getString("belongMarket");
-            Validate.notBlank(belongMarket, "主体所属批发市场统一社会信用代码");
-            String fromPlatform = object.getString("fromPlatform");
-            Validate.notBlank(fromPlatform, "所属平台");
+            Validate.notBlank(object.getString("fstEntName"), "第" + i + "行：企业名称--不能为空");
+            Validate.notBlank(object.getString("socialCreditUnicode"), "第" + i + "行：统一社会信用代码--不能为空");
+            Validate.notBlank(object.getString("dom"), "第" + i + "行：经营场所不能为空");
+            Validate.notBlank(object.getString("contactsUser"), "第" + i + "行：联系人--不能为空");
+            Validate.notBlank(object.getString("contactsTel"), "第" + i + "行：联系电话--不能为空");
+            Validate.notBlank(object.getString("opScope"), "第" + i + "行：营业范围--不能为空");
+            Validate.notBlank(object.getString("opStartDate"), "第" + i + "行：经营起始时间--不能为空");
+            Validate.notBlank(object.getString("opEndDate"), "第" + i + "行：经营终止时间--不能为空");
+            Validate.notBlank(object.getString("province"), "第" + i + "行：省级行政区划--不能为空");
+            Validate.notBlank(object.getString("city"), "第" + i + "行：市级行政区划--不能为空");
+            Validate.notBlank(object.getString("district"), "第" + i + "行：区县级行政区划--不能为空");
+            Validate.notBlank(object.getString("institute"), "第" + i + "行：经营地点所属机构或所--不能为空");
+            Validate.notBlank(object.getString("fullAddress"), "第" + i + "行：经营地点完整地址--不能为空");
+            Validate.notBlank(object.getString("type"), "第" + i + "行：企业类型--不能为空");
+            Validate.notBlank(object.getString("belongMarket"), "第" + i + "行：主体所属批发市场统一社会信用代码--不能为空");
+            Validate.notBlank(object.getString("fromPlatform"), "第" + i + "行：所属平台--不能为空");
 
             CompanyEntity companyEntity = JSON.toJavaObject(object, CompanyEntity.class);
             list.add(companyEntity);
