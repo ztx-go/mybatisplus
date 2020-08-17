@@ -25,7 +25,7 @@ public class UserEntity implements Serializable {
 
     //    @TableField(value = "name", insertStrategy = FieldStrategy.NOT_NULL)
 //    @NotEmpty(message = "姓名不能为空")
-    @ApiModelProperty(value = "name")
+    @ApiModelProperty(value = "name", required = true)
     @NotBlank(message = "姓名不能为空")
     @TableField(value = "name")
     private String name;

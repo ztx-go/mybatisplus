@@ -26,7 +26,7 @@ public class CirculateSupplyController extends BaseController {
     CirculateSupplyService supplyService;
 
     @ApiOperation(value = "推送数据", notes = "", httpMethod = "POST")
-    @PostMapping(value = "/pushData")
+    @PostMapping
     public ResponseModel add(@ApiParam(name = "circulateSupplyEntitys", value = "进货记录") @Valid @RequestBody ValidableList<CirculateSupplyEntity> circulateSupplyEntitys) {
         try {
             supplyService.saveBatch(circulateSupplyEntitys);

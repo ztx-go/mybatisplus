@@ -25,22 +25,22 @@ public class CirculateReturnEntity implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "商品名称")
+    @ApiModelProperty(value = "商品名称", required = true)
     @NotBlank(message = "商品名称不能为空")
     @TableField(value = "product_name")
     private String productName;
 
-    @ApiModelProperty(value = "商品条码/二维码")
+    @ApiModelProperty(value = "商品条码/二维码", required = true)
     @NotBlank(message = "商品条码/二维码不能为空")
     @TableField(value = "bar_code")
     private String barCode;
 
-    @ApiModelProperty(value = "批号")
+    @ApiModelProperty(value = "批号", required = true)
     @NotBlank(message = "批号不能为空")
     @TableField(value = "batch")
     private String batch;
 
-    @ApiModelProperty(value = "生产日期")
+    @ApiModelProperty(value = "生产日期", required = true)
     @NotBlank(message = "生产日期不能为空")
     @TableField(value = "produced_date")
     private String producedDate;
@@ -50,12 +50,12 @@ public class CirculateReturnEntity implements Serializable {
     @TableField(value = "social_credit_unicode")
     private String socialCreditUnicode;
 
-    @ApiModelProperty(value = "单位")
+    @ApiModelProperty(value = "单位", required = true)
     @NotBlank(message = "单位不能为空")
     @TableField(value = "unit")
     private String unit;
 
-    @ApiModelProperty(value = "退货数量")
+    @ApiModelProperty(value = "退货数量", required = true)
     @NotBlank(message = "退货数量不能为空")
     @TableField(value = "return_num")
     private String returnNum;
@@ -70,21 +70,21 @@ public class CirculateReturnEntity implements Serializable {
     @TableField(value = "latitude")
     private String latitude;
 
-    @ApiModelProperty(value = "台账所属公司统一社会信用代码")
+    @ApiModelProperty(value = "台账所属公司统一社会信用代码", required = true)
     @NotBlank(message = "台账所属公司统一社会信用代码不能为空")
     @TableField(value = "from_company_code")
     private String fromCompanyCode;
 
-    @ApiModelProperty(value = "所属平台")
+    @ApiModelProperty(value = "所属平台", required = true)
     @NotBlank(message = "所属平台不能为空")
     @TableField(value = "from_platform")
     private String fromPlatform;
 
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty(value = "创建时间", hidden = true)
     @TableField(value = "created_at")
     private String createdAt;
 
-    @ApiModelProperty(value = "最近一次修改时间")
+    @ApiModelProperty(value = "最近一次修改时间", hidden = true)
     @TableField(value = "updated_at")
     private String updatedAt;
 

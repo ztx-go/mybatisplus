@@ -24,26 +24,26 @@ public class CirculateSupplyDetailEntity implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "外键:tz_supplies表ID")
+    @ApiModelProperty(value = "外键:tz_supplies表ID",hidden = true)
     @TableField(value = "supply_id")
     private String supply_id;
 
-    @ApiModelProperty(value = "产品名称")
+    @ApiModelProperty(value = "产品名称", required = true)
     @NotBlank(message = "产品名称不能为空")
     @TableField(value = "product_name")
     private String productName;
 
-    @ApiModelProperty(value = "条码/二维码")
+    @ApiModelProperty(value = "条码/二维码", required = true)
     @NotBlank(message = "条码/二维码不能为空")
     @TableField(value = "bar_code")
     private String barCode;
 
-    @ApiModelProperty(value = "批号")
+    @ApiModelProperty(value = "批号", required = true)
     @NotBlank(message = "批号不能为空")
     @TableField(value = "batch")
     private String batch;
 
-    @ApiModelProperty(value = "进货数量")
+    @ApiModelProperty(value = "进货数量", required = true)
     @NotBlank(message = "进货数量不能为空")
     @TableField(value = "stock_num")
     private String stockNum;
@@ -53,26 +53,26 @@ public class CirculateSupplyDetailEntity implements Serializable {
     @TableField(value = "produced_date")
     private String producedDate;
 
-    @ApiModelProperty(value = "生产企业统一社会信用代码")
+    @ApiModelProperty(value = "生产企业统一社会信用代码", required = true)
     @NotBlank(message = "生产企业统一社会信用代码不能为空")
     @TableField(value = "social_credit_unicode")
     private String socialCreditUnicode;
 
-    @ApiModelProperty(value = "单位")
+    @ApiModelProperty(value = "单位", required = true)
     @NotBlank(message = "单位不能为空")
     @TableField(value = "unit")
     private String unit;
 
-    @ApiModelProperty(value = "检验检疫报告")
+    @ApiModelProperty(value = "检验检疫报告", required = true)
     @NotNull(message = "检验检疫报告字段必须存在")
     @TableField(value = "detection_records")
     private String detectionRecords;
 
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty(value = "创建时间", hidden = true)
     @TableField(value = "created_at")
     private String createdAt;
 
-    @ApiModelProperty(value = "最近一次修改时间")
+    @ApiModelProperty(value = "最近一次修改时间", hidden = true)
     @TableField(value = "updated_at")
     private String updatedAt;
 

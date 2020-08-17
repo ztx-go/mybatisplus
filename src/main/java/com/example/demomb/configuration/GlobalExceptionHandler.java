@@ -2,6 +2,8 @@ package com.example.demomb.configuration;
 
 import com.example.demomb.controller.model.ResponseCode;
 import com.example.demomb.controller.model.ResponseModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,6 +16,9 @@ import java.util.List;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     @ResponseBody
     public ResponseModel MyExceptionHandle(MethodArgumentNotValidException exception) {
@@ -24,7 +29,8 @@ public class GlobalExceptionHandler {
         if (result.hasErrors()) {
             List<FieldError> fieldErrors = result.getFieldErrors();
             fieldErrors.forEach(error -> {
-                System.out.println("field" + error.getField() + ", msg:" + error.getDefaultMessage());
+//                System.out.println("field" + error.getField() + ", msg:" + error.getDefaultMessage());
+                LOGGER.error("==所属field{}，报错信息{}==", error.getField(), error.getDefaultMessage());
                 errorMsg.append(error.getField() + error.getDefaultMessage()).append(" ");
             });
         }

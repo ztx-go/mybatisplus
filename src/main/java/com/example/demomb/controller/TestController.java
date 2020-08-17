@@ -36,9 +36,8 @@ import java.io.OutputStream;
 import java.util.Date;
 
 //@Api(value = "test controller")
-//@Api(tags = "TEST", description = "TEST Control")
 //@RestController
-@RequestMapping("/v1/test")
+//@RequestMapping("/v1/test")
 public class TestController extends BaseController {
 
     @Autowired

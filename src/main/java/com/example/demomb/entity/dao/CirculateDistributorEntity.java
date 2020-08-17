@@ -11,6 +11,7 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 销货记录表
@@ -24,17 +25,17 @@ public class CirculateDistributorEntity implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "分销商名称")
+    @ApiModelProperty(value = "分销商名称", required = true)
     @NotBlank(message = "分销商名称不能为空")
     @TableField(value = "distributor_name")
     private String distributorName;
 
-    @ApiModelProperty(value = "分销商统一社会信用代码")
+    @ApiModelProperty(value = "分销商统一社会信用代码", required = true)
     @NotNull(message = "分销商统一社会信用代码字段必须存在")
     @TableField(value = "distributor_code")
     private String distributorCode;
 
-    @ApiModelProperty(value = "销货日期")
+    @ApiModelProperty(value = "销货日期", required = true)
     @NotBlank(message = "销货日期不能为空")
     @TableField(value = "sales_date")
     private String salesDate;
@@ -49,23 +50,23 @@ public class CirculateDistributorEntity implements Serializable {
     @TableField(value = "latitude")
     private String latitude;
 
-    @ApiModelProperty(value = "台账所属公司统一社会信用代码")
+    @ApiModelProperty(value = "台账所属公司统一社会信用代码", required = true)
     @NotBlank(message = "台账所属公司统一社会信用代码不能为空")
     @TableField(value = "from_company_code")
     private String fromCompanyCode;
 
-    @ApiModelProperty(value = "所属平台")
+    @ApiModelProperty(value = "所属平台", required = true)
     @NotBlank(message = "所属平台不能为空")
     @TableField(value = "from_platform")
     private String fromPlatform;
 
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty(value = "创建时间", hidden = true)
     @TableField(value = "created_at")
-    private String createdAt;
+    private Date createdAt;
 
-    @ApiModelProperty(value = "最近一次修改时间")
+    @ApiModelProperty(value = "最近一次修改时间", hidden = true)
     @TableField(value = "updated_at")
-    private String updatedAt;
+    private Date updatedAt;
 
 
 }
