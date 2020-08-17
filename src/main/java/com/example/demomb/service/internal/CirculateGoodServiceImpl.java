@@ -20,30 +20,4 @@ public class CirculateGoodServiceImpl extends ServiceImpl<CirculateGoodMapper, C
     @Autowired
     private CirculateGoodMapper goodMapper;
 
-    @Override
-    public void create(JSONObject jsonObject) {
-        //json数组 info不需要判断是否为空，可能同步的内容就是空
-        JSONArray jsonArray = jsonObject.getJSONArray("info");
-        String info = jsonObject.getString("info");
-        System.out.println(info);
-//        List<CirculateCompanyEntity> companyEntities = JSON.parseArray(info, CirculateCompanyEntity.class);
-//        System.out.println(companyEntities);
-        List<CirculateGoodEntity> list = new ArrayList<>();
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JSONObject object = jsonArray.getJSONObject(i);
-            Validate.notBlank(object.getString("barCode"), "第" + i + "行：条形码/二维码--不能为空");
-            Validate.notBlank(object.getString("goodsName"), "第" + i + "行：商品名称--不能为空");
-            Validate.notBlank(object.getString("goodsType"), "第" + i + "行：商品类型--不能为空");
-            Validate.notBlank(object.getString("sellerName"), "第" + i + "行：生产企业名称--不能为空");
-            Validate.notBlank(object.getString("specification"), "第" + i + "行：规格--不能为空");
-            Validate.notBlank(object.getString("productCategoryName"), "第" + i + "行：商品类别--不能为空");
-            Validate.notBlank(object.getString("fromCompanyCode"), "第" + i + "行：商品所属公司统一社会信用代码--不能为空");
-            Validate.notBlank(object.getString("fromPlatform"), "第" + i + "行：所属平台--不能为空");
-
-            CirculateGoodEntity goodEntity = JSON.toJavaObject(object, CirculateGoodEntity.class);
-            list.add(goodEntity);
-        }
-
-        saveBatch(list);
-    }
 }

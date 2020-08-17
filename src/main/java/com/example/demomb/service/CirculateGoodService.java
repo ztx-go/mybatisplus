@@ -6,6 +6,5 @@ import com.example.demomb.entity.dao.CirculateGoodEntity;
 
 public interface CirculateGoodService extends IService<CirculateGoodEntity> {
 
-    void create(JSONObject jsonObject);
 
 }

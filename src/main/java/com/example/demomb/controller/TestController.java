@@ -108,7 +108,7 @@ public class TestController extends BaseController {
                 //    https://bbs.csdn.net/topics/320256753 需要额外导入两个包
 
             }
-            companyService.create(jsonObject);
+//            companyService.create(jsonObject);
 
             return new ResponseModel(new Date().getTime(), null, ResponseCode._200, null);
         } catch (Exception e) {

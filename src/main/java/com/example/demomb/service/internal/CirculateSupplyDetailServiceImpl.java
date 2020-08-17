@@ -20,26 +20,4 @@ public class CirculateSupplyDetailServiceImpl extends ServiceImpl<CirculateSuppl
     @Autowired
     private CirculateSupplyDetailMapper supplyDetailMapper;
 
-    @Override
-    public void create(JSONObject jsonObject) {
-        //json数组 info不需要判断是否为空，可能同步的内容就是空
-        JSONArray jsonArray = jsonObject.getJSONArray("info");
-        String info = jsonObject.getString("info");
-        System.out.println(info);
-//        List<CirculateCompanyEntity> companyEntities = JSON.parseArray(info, CirculateCompanyEntity.class);
-//        System.out.println(companyEntities);
-        List<CirculateSupplyDetailEntity> list = new ArrayList<>();
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JSONObject object = jsonArray.getJSONObject(i);
-            Validate.notBlank(object.getString("productName"), "第" + i + "行：商品名称--不能为空");
-            Validate.notBlank(object.getString("barCode"), "第" + i + "行：商品条码/二维码--不能为空");
-            Validate.notBlank(object.getString("batch"), "第" + i + "行：批号--不能为空");
-            Validate.notBlank(object.getString("stockNum"), "第" + i + "行：进货数量--不能为空");
-            Validate.notBlank(object.getString("unit"), "第" + i + "行：单位--不能为空");
-
-            CirculateSupplyDetailEntity supplyDetailEntity = JSON.toJavaObject(object, CirculateSupplyDetailEntity.class);
-            list.add(supplyDetailEntity);
-        }
-        saveBatch(list);
-    }
 }
