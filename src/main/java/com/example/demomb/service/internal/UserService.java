@@ -14,12 +14,12 @@ public class UserService {
     private UserMapper userMapper;
 
     @Transactional
-    public void create() {
+    public void create(UserEntity userEntity) {
 
-        UserEntity userEntity = new UserEntity();
+//        UserEntity userEntity = new UserEntity();
         // userEntity.setName("test");
         // userEntity.setAge("11");
-        // userMapper.insert(userEntity);
+        userMapper.insert(userEntity);
         // Validate.notBlank(userEntity.getName(), "名字不能为空");
 //        throw new IllegalArgumentException("ddd");
 

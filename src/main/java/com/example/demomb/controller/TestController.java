@@ -4,10 +4,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demomb.common.FileUtil;
 import com.example.demomb.controller.model.ResponseCode;
 import com.example.demomb.controller.model.ResponseModel;
-import com.example.demomb.service.internal.CompanyServiceImpl;
+import com.example.demomb.entity.ValidableList;
+import com.example.demomb.entity.dao.UserEntity;
+import com.example.demomb.entity.vo.PushDataVo;
+import com.example.demomb.service.internal.CirculateCompanyServiceImpl;
 import com.example.demomb.service.internal.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,18 +35,33 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
 
-@Api(value = "test controller")
-@RestController
-@RequestMapping("/test")
+//@Api(value = "test controller")
+//@Api(tags = "TEST", description = "TEST Control")
+//@RestController
+@RequestMapping("/v1/test")
 public class TestController extends BaseController {
 
     @Autowired
     UserService userService;
 
     @Autowired
-    CompanyServiceImpl companyService;
+    CirculateCompanyServiceImpl companyService;
 
-    @ApiOperation(value = "test", notes = "test")
+    @ApiOperation(value = "createUser", notes = "createUser", httpMethod = "POST")
+    @RequestMapping(value = "/createUser", method = RequestMethod.POST)
+    public ResponseModel createUser(@ApiParam(name = "userEntity", value = "userEntity的数据") @RequestBody @Valid ValidableList<UserEntity> userEntitys) {
+        try {
+
+            userService.create(userEntitys.get(0));
+
+            return new ResponseModel(new Date().getTime(), null, ResponseCode._200, null);
+        } catch (Exception e) {
+            return this.buildHttpReslutForException(e);
+        }
+
+    }
+
+    @ApiOperation(value = "新增用户", notes = "传 json, 数据放 body", httpMethod = "POST")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseModel test(@RequestBody JSONObject jsonObject) {
         try {
@@ -94,5 +114,23 @@ public class TestController extends BaseController {
         } catch (Exception e) {
             return this.buildHttpReslutForException(e);
         }
+    }
+
+    @ApiOperation(value = "推送数据", notes = "", httpMethod = "POST")
+    @RequestMapping(value = "/pushData", method = RequestMethod.POST)
+    public String pushData(@ApiParam(name = "info", value = "推送的数据") String info, @ApiParam(value = "catalogid") String catalogid,
+                           @ApiParam(value = "format") String format, @ApiParam(value = "verifyCode") String verifyCode,
+                           @ApiParam(value = "fileName") String[] fileName, @ApiParam(value = "fileContent") byte[] fileContent) {
+
+
+        return "200";
+    }
+
+    @ApiOperation(value = "推送数据", notes = "", httpMethod = "POST")
+    @RequestMapping(value = "/pushData2", method = RequestMethod.POST)
+    public String pushData2(@ApiParam(name = "PushDataVo", value = "推送的数据") @RequestBody PushDataVo pushDataVo) {
+
+
+        return "200";
     }
 }
