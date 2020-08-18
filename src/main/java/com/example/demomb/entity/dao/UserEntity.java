@@ -1,6 +1,5 @@
 package com.example.demomb.entity.dao;
 
-import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -9,9 +8,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @ApiModel(value = "UserEntity")
@@ -19,21 +17,21 @@ import java.io.Serializable;
 @Data
 public class UserEntity implements Serializable {
 
-    @TableId(value = "id", type = IdType.AUTO)
     @ApiModelProperty(hidden = true)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    //    @TableField(value = "name", insertStrategy = FieldStrategy.NOT_NULL)
-//    @NotEmpty(message = "姓名不能为空")
-    @ApiModelProperty(value = "name", required = true)
-    @NotBlank(message = "姓名不能为空")
-    @TableField(value = "name")
-    private String name;
+    @ApiModelProperty(value = "用户名")
+    @TableField(value = "username")
+    @NotBlank(message = "用户名不能为空")
+    private String username;
 
-    @ApiModelProperty(value = "age")
-    @NotNull(message = "年龄字段必须存在")
-    @TableField(value = "age")
-    private String age;
+    @ApiModelProperty(value = "密码")
+    @TableField(value = "password")
+    @NotBlank(message = "密码不能为空")
+    private String password;
 
-
+    @ApiModelProperty(value = "盐值",hidden = true)
+    @TableField(value = "pwdSalt")
+    private String pwdSalt;
 }

@@ -1,4 +1,4 @@
-package com.example.demomb.configuration;
+package com.example.demomb.common.exception;
 
 import com.example.demomb.controller.model.ResponseCode;
 import com.example.demomb.controller.model.ResponseModel;
@@ -37,5 +37,12 @@ public class GlobalExceptionHandler {
 
         exception.printStackTrace();
         return new ResponseModel(new Date().getTime(), null, ResponseCode._402, errorMsg.toString());
+    }
+
+    @ExceptionHandler(value = TokenException.class)
+    @ResponseBody
+    public ResponseModel MyExceptionHandleForToken(TokenException exception) {
+        exception.printStackTrace();
+        return new ResponseModel(new Date().getTime(), null, ResponseCode._401, exception.getMessage());
     }
 }

@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: node
+    active: dev
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/demomb?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true&serverTimezone=GMT
     username: root
