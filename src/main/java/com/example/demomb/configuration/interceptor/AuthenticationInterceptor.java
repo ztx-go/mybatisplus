@@ -9,7 +9,11 @@ import com.example.demomb.annotation.PassToken;
 import com.example.demomb.annotation.UserLoginToken;
 import com.example.demomb.common.exception.TokenException;
 import com.example.demomb.entity.dao.UserEntity;
+<<<<<<< HEAD
 import com.example.demomb.service.internal.UserServiceImpl;
+=======
+import com.example.demomb.service.UserService;
+>>>>>>> origin/master
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -21,7 +25,11 @@ import java.lang.reflect.Method;
 
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
+<<<<<<< HEAD
     UserServiceImpl userService;
+=======
+    UserService userService;
+>>>>>>> origin/master
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
@@ -52,7 +60,11 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if (method.getDeclaringClass().isAnnotationPresent(UserLoginToken.class)) {
             UserLoginToken userLoginTokenInClass = method.getDeclaringClass().getAnnotation(UserLoginToken.class);
             if (userLoginTokenInClass.required()) {
+<<<<<<< HEAD
                 return auth(token);
+=======
+                return detectToken(token);
+>>>>>>> origin/master
             }
         }
 
@@ -60,7 +72,11 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if (method.isAnnotationPresent(UserLoginToken.class)) {
             UserLoginToken userLoginToken = method.getAnnotation(UserLoginToken.class);
             if (userLoginToken.required()) {
+<<<<<<< HEAD
                 return auth(token);
+=======
+                return detectToken(token);
+>>>>>>> origin/master
             }
         }
         return true;
@@ -79,7 +95,11 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                                 Object o, Exception e) throws Exception {
     }
 
+<<<<<<< HEAD
     private boolean auth(String token) throws TokenException {
+=======
+    private boolean detectToken(String token) throws TokenException {
+>>>>>>> origin/master
         // 执行认证
         if (token == null) {
             throw new TokenException("无token，请重新登录");
