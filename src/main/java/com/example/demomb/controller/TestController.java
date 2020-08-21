@@ -1,15 +1,14 @@
 package com.example.demomb.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demomb.common.FileUtil;
+import com.example.demomb.annotation.UserLoginToken;
+import com.example.demomb.common.utils.FileUtil;
 import com.example.demomb.controller.model.ResponseCode;
 import com.example.demomb.controller.model.ResponseModel;
 import com.example.demomb.entity.ValidableList;
 import com.example.demomb.entity.dao.UserEntity;
-import com.example.demomb.entity.vo.PushDataVo;
 import com.example.demomb.service.internal.CirculateCompanyServiceImpl;
-import com.example.demomb.service.internal.UserService;
-import io.swagger.annotations.Api;
+import com.example.demomb.service.internal.UserServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.fileupload.FileItem;
@@ -19,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,13 +36,13 @@ import java.io.OutputStream;
 import java.util.Date;
 
 //@Api(value = "test controller")
-//@Api(tags = "TEST", description = "TEST Control")
-//@RestController
+@UserLoginToken
+@RestController
 @RequestMapping("/v1/test")
 public class TestController extends BaseController {
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
 
     @Autowired
     CirculateCompanyServiceImpl companyService;
@@ -108,29 +108,32 @@ public class TestController extends BaseController {
                 //    https://bbs.csdn.net/topics/320256753 需要额外导入两个包
 
             }
-            companyService.create(jsonObject);
+//            companyService.create(jsonObject);
 
             return new ResponseModel(new Date().getTime(), null, ResponseCode._200, null);
         } catch (Exception e) {
             return this.buildHttpReslutForException(e);
         }
     }
+//    @UserLoginToken
+    @PostMapping(value = "/test")
+    public ResponseModel test() {
+        try {
 
-    @ApiOperation(value = "推送数据", notes = "", httpMethod = "POST")
-    @RequestMapping(value = "/pushData", method = RequestMethod.POST)
-    public String pushData(@ApiParam(name = "info", value = "推送的数据") String info, @ApiParam(value = "catalogid") String catalogid,
-                           @ApiParam(value = "format") String format, @ApiParam(value = "verifyCode") String verifyCode,
-                           @ApiParam(value = "fileName") String[] fileName, @ApiParam(value = "fileContent") byte[] fileContent) {
-
-
-        return "200";
+            return new ResponseModel(new Date().getTime(), "200", ResponseCode._200, null);
+        } catch (Exception e) {
+            return this.buildHttpReslutForException(e);
+        }
     }
 
-    @ApiOperation(value = "推送数据", notes = "", httpMethod = "POST")
-    @RequestMapping(value = "/pushData2", method = RequestMethod.POST)
-    public String pushData2(@ApiParam(name = "PushDataVo", value = "推送的数据") @RequestBody PushDataVo pushDataVo) {
+    @PostMapping(value = "/test2")
+    public ResponseModel test2() {
+        try {
 
-
-        return "200";
+            return new ResponseModel(new Date().getTime(), "200", ResponseCode._200, null);
+        } catch (Exception e) {
+            return this.buildHttpReslutForException(e);
+        }
     }
+
 }
