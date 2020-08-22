@@ -48,12 +48,12 @@ public class UserTest {
 //        IPage<Map<String, Object>> mapIPage = userMapper.selectMapsPage(memberPage, queryWrapper);
 //        System.out.println("============" + mapIPage.getTotal() + mapIPage.getSize() + mapIPage.getRecords());
 
-        Page<UserEntity> page1 = new Page<>(1, 3);
-        IPage<UserEntity> myPageUser = userMapper.selectMyPage(page1, queryWrapper);
-        System.out.println("============" + myPageUser.getTotal() + myPageUser.getSize() + myPageUser.getRecords());
-
-        IPage<UserTestVO> myPageUser1 = userMapper.selectByHisName(page1);
-        System.out.println("+++++++" + myPageUser1.getTotal() + myPageUser1.getSize() + myPageUser1.getRecords());
+//        Page<UserEntity> page1 = new Page<>(1, 3);
+//        IPage<UserEntity> myPageUser = userMapper.selectMyPage(page1, queryWrapper);
+//        System.out.println("============" + myPageUser.getTotal() + myPageUser.getSize() + myPageUser.getRecords());
+//
+//        IPage<UserTestVO> myPageUser1 = userMapper.selectByHisName(page1);
+//        System.out.println("+++++++" + myPageUser1.getTotal() + myPageUser1.getSize() + myPageUser1.getRecords());
 
     }
 
