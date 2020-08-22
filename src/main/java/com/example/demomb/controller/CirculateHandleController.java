@@ -26,7 +26,7 @@ public class CirculateHandleController extends BaseController {
     CirculateHandleService handleService;
 
     @ApiOperation(value = "推送数据", notes = "", httpMethod = "POST")
-    @PostMapping(value = "/pushData")
+    @PostMapping
     public ResponseModel add(@ApiParam(name = "circulateHandleEntitys", value = "商品处理台账信息") @Valid @RequestBody ValidableList<CirculateHandleEntity> circulateHandleEntitys) {
         try {
             handleService.saveBatch(circulateHandleEntitys);

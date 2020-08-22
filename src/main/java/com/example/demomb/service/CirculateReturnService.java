@@ -6,5 +6,4 @@ import com.example.demomb.entity.dao.CirculateReturnEntity;
 
 public interface CirculateReturnService extends IService<CirculateReturnEntity> {
 
-    void create(JSONObject jsonObject);
 }

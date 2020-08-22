@@ -1,15 +1,15 @@
 package com.example.demomb.configuration.interceptor;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.auth0.jwt.exceptions.JWTVerificationException;
+
 import com.example.demomb.annotation.PassToken;
 import com.example.demomb.annotation.UserLoginToken;
 import com.example.demomb.common.exception.TokenException;
 import com.example.demomb.entity.dao.UserEntity;
+
+import com.example.demomb.service.internal.UserServiceImpl;
+
 import com.example.demomb.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -22,6 +22,7 @@ import java.lang.reflect.Method;
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
     UserService userService;
+
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
@@ -52,7 +53,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if (method.getDeclaringClass().isAnnotationPresent(UserLoginToken.class)) {
             UserLoginToken userLoginTokenInClass = method.getDeclaringClass().getAnnotation(UserLoginToken.class);
             if (userLoginTokenInClass.required()) {
+
                 return detectToken(token);
+
             }
         }
 
@@ -60,7 +63,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if (method.isAnnotationPresent(UserLoginToken.class)) {
             UserLoginToken userLoginToken = method.getAnnotation(UserLoginToken.class);
             if (userLoginToken.required()) {
+
                 return detectToken(token);
+
             }
         }
         return true;
@@ -79,29 +84,31 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                                 Object o, Exception e) throws Exception {
     }
 
+
     private boolean detectToken(String token) throws TokenException {
-        // 执行认证
-        if (token == null) {
-            throw new TokenException("无token，请重新登录");
-        }
-        // 获取 token 中的 user id
-        String userId;
-        try {
-            userId = JWT.decode(token).getAudience().get(0);
-        } catch (JWTDecodeException j) {
-            throw new TokenException("从token中获取user失败");
-        }
-        UserEntity user = userService.findUserById(userId);
-        if (user == null) {
-            throw new TokenException("用户不存在，请重新登录");
-        }
-        // 验证 token
-        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
-        try {
-            jwtVerifier.verify(token);
-        } catch (JWTVerificationException e) {
-            throw new TokenException("失效token，请重新登录");
-        }
+
+//        // 执行认证
+//        if (token == null) {
+//            throw new TokenException("无token，请重新登录");
+//        }
+//        // 获取 token 中的 user id
+//        String userId;
+//        try {
+//            userId = JWT.decode(token).getAudience().get(0);
+//        } catch (JWTDecodeException j) {
+//            throw new TokenException("从token中获取user失败");
+//        }
+//        UserEntity user = userService.findUserById(userId);
+//        if (user == null) {
+//            throw new TokenException("用户不存在，请重新登录");
+//        }
+//        // 验证 token
+//        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
+//        try {
+//            jwtVerifier.verify(token);
+//        } catch (JWTVerificationException e) {
+//            throw new TokenException("失效token，请重新登录");
+//        }
         return true;
     }
 }

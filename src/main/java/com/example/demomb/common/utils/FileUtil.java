@@ -1,4 +1,4 @@
-package com.example.demomb.common;
+package com.example.demomb.common.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 

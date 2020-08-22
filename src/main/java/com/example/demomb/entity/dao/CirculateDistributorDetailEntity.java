@@ -28,41 +28,41 @@ public class CirculateDistributorDetailEntity implements Serializable {
     @TableField(value = "distributor_id")
     private String distributorId;
 
-    @ApiModelProperty(value = "产品名称")
+    @ApiModelProperty(value = "产品名称", required = true)
     @NotBlank(message = "产品名称不能为空")
     @TableField(value = "product_name")
     private String productName;
 
-    @ApiModelProperty(value = "条码/二维码")
+    @ApiModelProperty(value = "条码/二维码", required = true)
     @NotBlank(message = "条码/二维码不能为空")
     @TableField(value = "bar_code")
     private String barCode;
 
-    @ApiModelProperty(value = "批号")
+    @ApiModelProperty(value = "批号", required = true)
     @NotBlank(message = "批号不能为空")
     @TableField(value = "batch")
     private String batch;
 
-    @ApiModelProperty(value = "销售数量")
+    @ApiModelProperty(value = "销售数量", required = true)
     @NotBlank(message = "销售数量不能为空")
     @TableField(value = "sales_num")
     private String salesNum;
 
-    @ApiModelProperty(value = "生产日期")
+    @ApiModelProperty(value = "生产日期", required = true)
     @NotBlank(message = "生产日期不能为空")
     @TableField(value = "produced_date")
     private String producedDate;
 
-    @ApiModelProperty(value = "生产企业统一社会信用代码", hidden = true)
+    @ApiModelProperty(value = "生产企业统一社会信用代码")
     @TableField(value = "social_credit_unicode")
     private String socialCreditUnicode;
 
-    @ApiModelProperty(value = "单位")
+    @ApiModelProperty(value = "单位", required = true)
     @NotBlank(message = "单位不能为空")
     @TableField(value = "unit")
     private String unit;
 
-    @ApiModelProperty(value = "检验检疫报告")
+    @ApiModelProperty(value = "检验检疫报告", required = true)
     @NotBlank(message = "检验检疫报告不能为空")
     @TableField(value = "detection_records")
     private String detectionRecords;

@@ -2,10 +2,9 @@ server:
   port: 8851
 
 spring:
-  profiles:
-    active: dev
+  profiles: node
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/demomb?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true&serverTimezone=GMT
+    url: jdbc:mysql://47.112.101.78:3306/demomb?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true&serverTimezone=GMT
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource

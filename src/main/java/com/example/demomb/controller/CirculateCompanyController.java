@@ -23,13 +23,13 @@ import java.util.Date;
 public class CirculateCompanyController extends BaseController {
 
     @Autowired
-    CirculateCompanyService companyService;
+    CirculateCompanyService circulateCompanyService;
 
     @ApiOperation(value = "推送数据", notes = "", httpMethod = "POST")
-    @PostMapping(value = "/pushData")
+    @PostMapping
     public ResponseModel add(@ApiParam(name = "circulateCompanyEntitys", value = "供货商信息和经销商信息") @Valid @RequestBody ValidableList<CirculateCompanyEntity> circulateCompanyEntitys) {
         try {
-            companyService.saveBatch(circulateCompanyEntitys);
+            circulateCompanyService.saveBatch(circulateCompanyEntitys);
             return new ResponseModel(new Date().getTime(), null, ResponseCode._200, null);
         } catch (Exception e) {
             return this.buildHttpReslutForException(e);

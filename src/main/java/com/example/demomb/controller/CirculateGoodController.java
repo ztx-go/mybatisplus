@@ -26,7 +26,7 @@ public class CirculateGoodController extends BaseController {
     CirculateGoodService goodService;
 
     @ApiOperation(value = "推送数据", notes = "", httpMethod = "POST")
-    @PostMapping(value = "/pushData")
+    @PostMapping
     public ResponseModel add(@ApiParam(name = "circulateGoodEntitys", value = "商品信息") @Valid @RequestBody ValidableList<CirculateGoodEntity> circulateGoodEntitys) {
         try {
             goodService.saveBatch(circulateGoodEntitys);

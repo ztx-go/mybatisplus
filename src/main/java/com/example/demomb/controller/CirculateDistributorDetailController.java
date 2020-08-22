@@ -19,14 +19,14 @@ import java.util.Date;
 
 @Api(tags = "CirculateDistributorDetail", description = "食品流通企业:销货商品明细")
 @RestController
-@RequestMapping("/v1/circulate/distributorDetail")
+@RequestMapping("/v1/circulate/distributor_detail")
 public class CirculateDistributorDetailController extends BaseController {
 
     @Autowired
     CirculateDistributorDetailService distributorDetailService;
 
     @ApiOperation(value = "推送数据", notes = "", httpMethod = "POST")
-    @PostMapping(value = "/pushData")
+    @PostMapping
     public ResponseModel add(@ApiParam(name = "circulateDistributorDetailEntitys", value = "销货商品明细") @Valid @RequestBody ValidableList<CirculateDistributorDetailEntity> circulateDistributorDetailEntitys) {
         try {
             distributorDetailService.saveBatch(circulateDistributorDetailEntitys);

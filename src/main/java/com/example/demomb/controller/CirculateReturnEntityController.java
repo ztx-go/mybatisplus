@@ -26,7 +26,7 @@ public class CirculateReturnEntityController extends BaseController {
     CirculateReturnService returnService;
 
     @ApiOperation(value = "推送数据", notes = "", httpMethod = "POST")
-    @PostMapping(value = "/pushData")
+    @PostMapping
     public ResponseModel add(@ApiParam(name = "sirculateReturnEntitys", value = "退货记录") @Valid @RequestBody ValidableList<CirculateReturnEntity> sirculateReturnEntitys) {
         try {
             returnService.saveBatch(sirculateReturnEntitys);

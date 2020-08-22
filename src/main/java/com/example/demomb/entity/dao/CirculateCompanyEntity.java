@@ -11,6 +11,7 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 企业信息表企业信息表
@@ -24,57 +25,57 @@ public class CirculateCompanyEntity implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "企业名称")
+    @ApiModelProperty(value = "企业名称", required = true)
     @NotBlank(message = "企业名称不能为空")
     @TableField(value = "fst_ent_name")
     private String fstEntName;
 
-    @ApiModelProperty(value = "统一社会信用代码")
+    @ApiModelProperty(value = "统一社会信用代码", required = true)
     @NotBlank(message = "统一社会信用代码不能为空")
     @TableField(value = "social_credit_unicode")
     private String socialCreditUnicode;
 
-    @ApiModelProperty(value = "经营场所")
+    @ApiModelProperty(value = "经营场所", required = true)
     @NotBlank(message = "经营场所不能为空")
     @TableField(value = "dom")
     private String dom;
 
-    @ApiModelProperty(value = "联系人")
+    @ApiModelProperty(value = "联系人", required = true)
     @NotBlank(message = "联系人不能为空")
     @TableField(value = "contacts_user")
     private String contactsUser;
 
-    @ApiModelProperty(value = "联系电话")
+    @ApiModelProperty(value = "联系电话", required = true)
     @NotBlank(message = "联系电话不能为空")
     @TableField(value = "contacts_tel")
     private String contactsTel;
 
-    @ApiModelProperty(value = "营业范围")
+    @ApiModelProperty(value = "营业范围", required = true)
     @NotBlank(message = "营业范围不能为空")
     @TableField(value = "op_scope")
     private String opScope;
 
-    @ApiModelProperty(value = "经营起始时间")
+    @ApiModelProperty(value = "经营起始时间", required = true)
     @NotBlank(message = "经营起始时间不能为空")
     @TableField(value = "op_start_date")
     private String opStartDate;
 
-    @ApiModelProperty(value = "经营终止时间")
+    @ApiModelProperty(value = "经营终止时间", required = true)
     @NotBlank(message = "经营终止时间不能为空")
     @TableField(value = "op_end_date")
     private String opEndDate;
 
-    @ApiModelProperty(value = "省级行政区划")
+    @ApiModelProperty(value = "省级行政区划", required = true)
     @NotBlank(message = "省级行政区划不能为空")
     @TableField(value = "province")
     private String province;
 
-    @ApiModelProperty(value = "市级行政区划")
+    @ApiModelProperty(value = "市级行政区划", required = true)
     @NotBlank(message = "市级行政区划不能为空")
     @TableField(value = "city")
     private String city;
 
-    @ApiModelProperty(value = "区县级行政区划")
+    @ApiModelProperty(value = "区县级行政区划", required = true)
     @NotBlank(message = "区县级行政区划不能为空")
     @TableField(value = "district")
     private String district;
@@ -83,7 +84,7 @@ public class CirculateCompanyEntity implements Serializable {
     @TableField(value = "institute")
     private String institute;
 
-    @ApiModelProperty(value = "经营地点完整地址")
+    @ApiModelProperty(value = "经营地点完整地址", required = true)
     @NotBlank(message = "经营地点完整地址不能为空")
     @TableField(value = "full_address")
     private String fullAddress;
@@ -98,7 +99,7 @@ public class CirculateCompanyEntity implements Serializable {
     @TableField(value = "latitude")
     private String latitude;
 
-    @ApiModelProperty(value = "企业类型")
+    @ApiModelProperty(value = "企业类型", required = true)
     @NotBlank(message = "企业类型不能为空")
     @TableField(value = "type")
     private String type;
@@ -107,17 +108,17 @@ public class CirculateCompanyEntity implements Serializable {
     @TableField(value = "belong_market")
     private String belongMarket;
 
-    @ApiModelProperty(value = "所属平台")
+    @ApiModelProperty(value = "所属平台", required = true)
     @NotBlank(message = "所属平台不能为空")
     @TableField(value = "from_platform")
     private String fromPlatform;
 
     @ApiModelProperty(value = "创建时间", hidden = true)
     @TableField(value = "created_at")
-    private String createdAt;
+    private Date createdAt;
 
     @ApiModelProperty(value = "最近一次修改时间", hidden = true)
     @TableField(value = "updated_at")
-    private String updatedAt;
+    private Date updatedAt;
 
 }
